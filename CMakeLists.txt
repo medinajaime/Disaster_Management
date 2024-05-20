@@ -2,16 +2,30 @@ cmake_minimum_required(VERSION 3.27)
 project(Disaster_Management)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-include_directories(.)
+# Find SQLite3 package
+find_package(SQLite3 REQUIRED)
 
-add_executable(Disaster_Management
-        CommunicationManager.cpp
-        CommunicationManager.h
-        DatabaseManager.cpp
-        DatabaseManager.h
-        DisasterScenario.cpp
-        DisasterScenario.h
+# Include directories
+include_directories(${SQLite3_INCLUDE_DIRS})
+include_directories(include)
+
+# Source files
+set(SOURCES
+        src/CommunicationManager.cpp
+        src/DatabaseManager.cpp
+        src/DisasterScenario.cpp
+        src/ResourceInventory.cpp
         main.cpp
-        ResourceInventory.cpp
-        ResourceInventory.h)
+        include/DatabaseManager.h
+        include/CommunicationManager.h
+        include/DisasterScenario.h
+        include/ResourceInventory.h
+)
+
+# Add executable
+add_executable(Disaster_Management ${SOURCES})
+
+# Link libraries
+target_link_libraries(Disaster_Management ${SQLite3_LIBRARIES})
