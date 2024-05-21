@@ -1,7 +1,12 @@
-#include "DisasterScenario.h"
+#pragma once
+#include "DatabaseManager.h"
 
-DisasterScenario::DisasterScenario(const std::string& name, int severity) : name(name), severity(severity) {}
+class DisasterScenario {
+private:
+    std::string name;
+    int severity;
 
-void DisasterScenario::saveToDatabase(DatabaseManager& dbManager) {
-    dbManager.addScenario(name, severity);
-}
+public:
+    DisasterScenario(const std::string& name, int severity);
+    void saveToDatabase(DatabaseManager& dbManager);
+};

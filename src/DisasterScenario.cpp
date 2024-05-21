@@ -1,12 +1,7 @@
-#pragma once
-#include "DatabaseManager.h"
+#include "DisasterScenario.h"
 
-class ResourceInventory {
-private:
-    std::string name;
-    int quantity;
+DisasterScenario::DisasterScenario(const std::string& name, int severity) : name(name), severity(severity) {}
 
-public:
-    ResourceInventory(const std::string& name, int quantity);
-    void saveToDatabase(DatabaseManager& dbManager);
-};
+void DisasterScenario::saveToDatabase(DatabaseManager& dbManager) {
+    dbManager.addScenario(name, severity);
+}
