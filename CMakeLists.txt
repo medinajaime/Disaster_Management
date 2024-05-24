@@ -4,11 +4,12 @@ project(Disaster_Management)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Find SQLite3 package
-find_package(SQLite3 REQUIRED)
+# Manually specify the path to the SQLite3 include directory and library
+set(SQLITE3_INCLUDE_DIR "C:/sqlite")
+set(SQLITE3_LIBRARY "C:/sqlite/sqlite3.dll")
 
 # Include directories
-include_directories(${SQLite3_INCLUDE_DIRS})
+include_directories(${SQLITE3_INCLUDE_DIR})
 include_directories(include)
 
 # Source files
@@ -28,4 +29,4 @@ set(SOURCES
 add_executable(Disaster_Management ${SOURCES})
 
 # Link libraries
-target_link_libraries(Disaster_Management ${SQLite3_LIBRARIES})
+target_link_libraries(Disaster_Management ${SQLITE3_LIBRARY})
